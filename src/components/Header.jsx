@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useState } from 'react'
-import logo from "../assets/logo.png"
+import logo from '../assets/logo.svg'
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -16,10 +16,7 @@ const Header = () => {
     return (
         <header className="header">
             <Link to="/">
-                <img src={logo}
-                    alt="Company logo"
-                    className="logo"
-                />
+                <img src={logo} />
             </Link>
             <nav className={`nav-menu ${menuOpen ? 'open' : ''}`}>
                 <Link to="/" className='nav-item' onClick={closeMenu}>Home</Link>
