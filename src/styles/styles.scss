@@ -161,7 +161,7 @@ $sold-red: #CD4036;
   .title {
     padding: 0 4em;
     text-align: center;
-    font-size: 1.4em;
+    font-size: 1.6em;
 
     .text-highlight {
       color: $sea-green;
@@ -185,6 +185,12 @@ $sold-red: #CD4036;
       &:hover, &:active {
         transform: scale(1.1);
       }
+    }
+  }
+
+  @media (max-width: 1412px) {
+    .title {
+      font-size: 1.4em;
     }
   }
 
