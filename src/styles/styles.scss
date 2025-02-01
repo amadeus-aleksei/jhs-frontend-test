@@ -1,23 +1,22 @@
 @use "reset";
 
 $white: #fff;
-$floral-white: #FBF8EE;
 $black: #000;
-$gray: #b3b3b3;
-$light-gray: #f5f5f5;
-$dark-gray: #363537;
-$gold: #d0a92c;
-$dark-gold: #977C20;
-$light-gold: #EDDEAB;
-$powder-blue: #AEC5EB;
-$flame: #e4572e;
-$ucla-blue: #406e8e;
+$dark-gray: #2E3033;
+$floral-white: #FBF8EE;
+$cream-white: #E1D9D1;
+$eggshell-white: #E3EBF8;
+$sea-green: #0F807C;
+$dark-cyan: #054D4A;
+$foam-green: #85D6CD;
+$sold-red: #CD4036;
+//--opaque-white-85: rgba(255, 255, 255, .85);
 
 .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: .8em 5%;
+    padding: .8em 8%;
     border-bottom: 1px solid $black;
     position: sticky;
     top: 0;
@@ -42,13 +41,13 @@ $ucla-blue: #406e8e;
         transition: color .3s ease;
   
         &:active {
-          color: $dark-gold;
+          color: $sea-green;
           transition: color .3s ease;
         }
       
         @media (hover: hover) and (pointer: fine) {
           &:hover {
-            color: $dark-gold;
+            color: $sea-green;
           }
         }
       }
@@ -71,18 +70,37 @@ $ucla-blue: #406e8e;
       }
   
       &:active .line, &.active .line {
-        background-color: $dark-gold;
+        background-color: $sea-green;
         transition: background-color 0.3s ease; // Smooth transition added
       }
     
       @media (hover: hover) and (pointer: fine) {
         &:hover .line {
-          background-color: $dark-gold;
+          background-color: $dark-cyan;
         }
       }
     }
   
-    @media (max-width: 1182px) {
+    @media (max-width: 1268px) {
+      justify-content: space-between;
+      padding: .8em 5%;
+
+
+      .logo {
+        width: 7em;
+      }
+
+      .nav-menu {
+        .nav-item {
+          font-size: 18px;
+        }
+      }
+    }
+
+    @media (max-width: 1054px) {
+      justify-content: space-between;
+      padding: .8em 12%;
+
       .logo {
         width: 6.6em;
       }
@@ -107,12 +125,12 @@ $ucla-blue: #406e8e;
             padding: 1rem;
   
             &:active {
-              color: $gold;
+              color: $dark-cyan;
             }
           
             @media (hover: hover) and (pointer: fine) {
               &:hover {
-                color: $gold;
+                color: $dark-cyan;
               }
             }
         }
