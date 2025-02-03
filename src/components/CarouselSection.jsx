@@ -40,23 +40,23 @@ const CarouselCard1 = ({
 }
 
 const CarouselSection = ({ title }) => {
-    const [property, setProperty] = useState(null);
+    const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        const fetchProperty = async () => {
+        const fetchProperties = async () => {
             try {
                 const response = await axios.get('http://localhost:5001/api/properties')
                 console.log("Fetched Data:", response.data); // Debugging
-                let data = response.data
+                // let data = response.data
 
                 // Ensure data is an array and contains at least one property
-                if (!Array.isArray(data) || data.length === 0) {
+                if (!Array.isArray(response.data) || response.data.length === 0) {
                     throw new Error("No properties found");
                 }
 
-                setProperty(data[0])
+                setProperties(response.data)
             } catch (err) {
                 setError('Failed to fetch property data');
                 console.error(err);
@@ -65,27 +65,32 @@ const CarouselSection = ({ title }) => {
             }
         };
 
-        fetchProperty();
+        fetchProperties();
     },[]);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
-    if (!property) return <p>No properties available</p>;
+    if (!properties.length) return <p>No properties available</p>;
 
     return (
         <section className="carousel-section">
             <h1 className="title">{title}</h1>
-            <CarouselCard1
-                // imgSrc={property.images[0]?.url || 'property-showcase.png'} // Use a default image if none provided
-                icon={icon}
-                iconLink={property.zillowlink || '#'}
-                address={property.address}
-                price={`$${property.price}`}
-                bedrooms={property.bedrooms}
-                bathrooms={property.bathrooms}
-                sqft={property.sqft}
-                listingstatus={property.listingstatus}
-            />
+            <div className="carousel-container">
+                {properties.map((property, index) => (
+                    <CarouselCard1
+                        key={property.id || index}
+                        // imgSrc={property.images[0]?.url || 'property-showcase.png'} // Use a default image if none provided
+                        icon={icon}
+                        iconLink={property.zillowlink || '#'}
+                        address={property.address}
+                        price={`$${property.price}`}
+                        bedrooms={property.bedrooms}
+                        bathrooms={property.bathrooms}
+                        sqft={property.sqft}
+                        listingstatus={property.listingstatus}
+                    />
+                ))}
+            </div>
         </section>
     )
 }
