@@ -43,7 +43,7 @@ const CarouselSection = ({ title }) => {
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-
+ 
     useEffect(() => {
         const fetchProperties = async () => {
             try {
