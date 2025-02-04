@@ -44,7 +44,7 @@ const CarouselSection = ({ title }) => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
  
-    useEffect(() => {
+    useEffect(() => { 
         const fetchProperties = async () => {
             try {
                 // const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/properties`)
