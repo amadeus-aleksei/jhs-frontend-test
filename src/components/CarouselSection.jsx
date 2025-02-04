@@ -62,7 +62,7 @@ const CarouselSection = ({ title }) => {
                 console.error(err);
             } finally {
                 setLoading(false);
-            }
+            } 
         };
 
         fetchProperties();
