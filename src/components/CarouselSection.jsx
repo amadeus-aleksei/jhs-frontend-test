@@ -47,8 +47,10 @@ const CarouselSection = ({ title }) => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/properties`)
+                // const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/properties`)
+                const response = await axios.get('http://67.205.170.40:5000')
                 console.log("Fetched Data:", response.data); // Debugging
+
                 // let data = response.data
 
                 // Ensure data is an array and contains at least one property
