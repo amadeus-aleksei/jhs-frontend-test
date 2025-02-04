@@ -52,7 +52,7 @@ const CarouselSection = ({ title }) => {
                 console.log("Fetched Data:", response.data); // Debugging
 
                 // let data = response.data
-
+ 
                 // Ensure data is an array and contains at least one property
                 if (!Array.isArray(response.data) || response.data.length === 0) {
                     throw new Error("No properties found");
