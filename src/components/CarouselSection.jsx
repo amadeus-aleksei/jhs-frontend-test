@@ -58,7 +58,7 @@ const CarouselSection = ({ title }) => {
                     throw new Error("No properties found");
                 }
 
-                setProperties(response.data)
+                setProperties(response.data) 
             } catch (err) {
                 setError('Failed to fetch property data');
                 console.error(err);
