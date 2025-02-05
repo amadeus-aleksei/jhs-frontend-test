@@ -48,10 +48,12 @@ const CarouselSection = ({ title }) => {
         const fetchProperties = async () => {
             try {
                 // const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/properties`)
-                const response = await axios.get('https://api.probablyawebsite.com/api/properties')
-                console.log("Fetched Data:", response.data); // Debugging
+                // const response = await axios.get('https://api.probablyawebsite.com/api/properties')
+                // const response = await axios.get('http://localhost:80/api/properties')
 
-                // let data = response.data
+                const apiUrl = import.meta.env.VITE_API_URL;
+                const response = await axios.get(`${apiUrl}/api/properties`);
+                console.log("Fetched Data:", response.data); // Debugging
  
                 // Ensure data is an array and contains at least one property
                 if (!Array.isArray(response.data) || response.data.length === 0) {
@@ -61,7 +63,7 @@ const CarouselSection = ({ title }) => {
                 setProperties(response.data) 
             } catch (err) {
                 setError('Failed to fetch property data');
-                console.error(err);
+                console.error("Error fetching properties:", err);
             } finally {
                 setLoading(false);
             } 
