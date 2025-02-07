@@ -21,7 +21,7 @@ const Header = () => {
             <nav className={`nav-menu ${menuOpen ? 'open' : ''}`}>
                 <Link to="/" className='nav-item' onClick={closeMenu}>Home</Link>
                 <Link to="/about-us" className='nav-item' onClick={closeMenu}>About Us</Link>
-                <Link to="/sellyourhome" className="nav-item" onClick={closeMenu}>Sell Your Home</Link>
+                <Link to="/sell-your-home" className="nav-item" onClick={closeMenu}>Sell Your Home</Link>
                 <Link to="/homes-for-sale" className='nav-item' onClick={closeMenu}>Homes For Sale</Link>
                 <Link to="/work-with-us" className='nav-item' onClick={closeMenu}>Work With Us</Link>
                 <Link to="/contractors" className='nav-item' onClick={closeMenu}>Contractors</Link>
