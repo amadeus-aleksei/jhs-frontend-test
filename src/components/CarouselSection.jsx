@@ -3,7 +3,7 @@ import axios from 'axios'
 import icon from "../assets/tiktok-icon.svg"; // Replace with actual icon path
 
 const CarouselCard1 = ({
-    imgSrc,
+    images,
     iconLink,
     icon,
     address,
@@ -15,7 +15,12 @@ const CarouselCard1 = ({
 }) => {
     return (
         <article className="carousel-card-1">
-            {/* <img className="image" src={imgSrc} alt="Property" /> */}
+            <div className="images-container">
+                {/* Render all images */}
+                {images.map((imgSrc, index) => (
+                    <img key={index} className="image" src={imgSrc} alt={`Property ${index + 1}`} />
+                ))}
+            </div>
             <div className="content">
                 <div className='content-left'>
                     <address className='row-top'>{address}</address>
@@ -47,20 +52,38 @@ const CarouselSection = ({ title }) => {
     useEffect(() => { 
         const fetchProperties = async () => {
             try {
-                // const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/properties`)
-                // const response = await axios.get('https://api.probablyawebsite.com/api/properties')
-                // const response = await axios.get('http://localhost:80/api/properties')
-
                 const apiUrl = import.meta.env.VITE_API_URL;
-                const response = await axios.get(`${apiUrl}/api/properties`);
+                const response = await axios.get(`http://localhost:1337/api/properties?populate=images`);
                 console.log("Fetched Data:", response.data); // Debugging
- 
-                // Ensure data is an array and contains at least one property
-                if (!Array.isArray(response.data) || response.data.length === 0) {
-                    throw new Error("No properties found");
+
+                const propertiesData = response.data?.data || [];
+                if (!Array.isArray(propertiesData) || propertiesData.length === 0) {
+                    throw new Error("No properties found or invalid response structure");
                 }
 
-                setProperties(response.data) 
+                const parsedProperties = propertiesData.map((property) => {
+                    const images = property.images && Array.isArray(property.images)
+                        ? property.images.map((image) => `http://localhost:1337${image.url}`)
+                        : [];
+
+                    console.log(`Images for property ID: ${property.id} URLs:`, images);
+
+
+                    return {
+                        id: property.id,
+                        address: property.address || "No Address Available",
+                        price: property.price !== null ? `$${property.price}` : "N/A",
+                        bedrooms: property.bedrooms || 0,
+                        bathrooms: property.bathrooms || 0,
+                        sqft: property.sqft || 0,
+                        listingstatus: property.listingstatus || "Unknown",
+                        zillowlink: property.zillowlink || "#",
+                        images, // ✅ Properly formatted URLs
+                    };
+                });
+
+                console.log("✅ Parsed Properties:", parsedProperties);
+                setProperties(parsedProperties);
             } catch (err) {
                 setError('Failed to fetch property data');
                 console.error("Error fetching properties:", err);
@@ -74,26 +97,30 @@ const CarouselSection = ({ title }) => {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
-    if (!properties.length) return <p>No properties available</p>;
+    // if (!properties.length) return <p>No properties available</p>;
 
     return (
         <section className="carousel-section">
             <h1 className="title">{title}</h1>
             <div className="carousel-container">
-                {properties.map((property, index) => (
-                    <CarouselCard1
-                        key={property.id || index}
-                        // imgSrc={property.images[0]?.url || 'property-showcase.png'} // Use a default image if none provided
-                        icon={icon}
-                        iconLink={property.zillowlink || '#'}
-                        address={property.address}
-                        price={`$${property.price}`}
-                        bedrooms={property.bedrooms}
-                        bathrooms={property.bathrooms}
-                        sqft={property.sqft}
-                        listingstatus={property.listingstatus}
-                    />
-                ))}
+                {properties.map((property, index) =>  {
+                    console.log(`Rendering property ID ${property.id}, Image URL:`, property.images[0]); // ✅ Inside map()👌
+
+                    return (
+                        <CarouselCard1
+                            key={property.id || index}
+                            images={property.images} // Use the first image or fallback
+                            icon={icon}
+                            iconLink={property.zillowlink || '#'}
+                            address={property.address}
+                            price={`$${property.price}`}
+                            bedrooms={property.bedrooms}
+                            bathrooms={property.bathrooms}
+                            sqft={property.sqft}
+                            listingstatus={property.listingstatus}
+                        />
+                    )
+                })}
             </div>
         </section>
     )
