@@ -54,7 +54,7 @@ const CarouselSection = ({ title }) => {
             try {
                 // const apiUrl = import.meta.env.VITE_API_URL;
                 // const apiUrl = "http://localhost:1337";
-                const apiUrl = "https://probablyawebsite.com/";
+                const apiUrl = "https://api.probablyawebsite.com/";
 
                 const response = await axios.get(`${apiUrl}/api/properties?populate=images`);
                 console.log("Fetched Data:", response.data); // Debugging
