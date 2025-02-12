@@ -52,8 +52,11 @@ const CarouselSection = ({ title }) => {
     useEffect(() => { 
         const fetchProperties = async () => {
             try {
-                const apiUrl = import.meta.env.VITE_API_URL;
-                const response = await axios.get(`http://localhost:1337/api/properties?populate=images`);
+                // const apiUrl = import.meta.env.VITE_API_URL;
+                // const apiUrl = "http://localhost:1337";
+                const apiUrl = "https://probablyawebsite.com/";
+
+                const response = await axios.get(`${apiUrl}/api/properties?populate=images`);
                 console.log("Fetched Data:", response.data); // Debugging
 
                 const propertiesData = response.data?.data || [];
@@ -63,7 +66,7 @@ const CarouselSection = ({ title }) => {
 
                 const parsedProperties = propertiesData.map((property) => {
                     const images = property.images && Array.isArray(property.images)
-                        ? property.images.map((image) => `http://localhost:1337${image.url}`)
+                        ? property.images.map((image) => `${apiUrl}${image.url}`)
                         : [];
 
                     console.log(`Images for property ID: ${property.id} URLs:`, images);
