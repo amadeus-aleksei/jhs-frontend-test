@@ -58,15 +58,24 @@ const CarouselSection = ({ title }) => {
                 const response = await axios.get(`${apiUrl}/api/properties?populate=images`);
                 console.log("Fetched Data:", response.data); // Debugging
 
-                const propertiesData = response.data?.data || [];
-                if (!Array.isArray(propertiesData) || propertiesData.length === 0) {
-                    throw new Error("No properties found or invalid response structure");
+                const propertiesData = response.data?.data ?? [];
+
+                if (!Array.isArray(propertiesData)) {
+                    throw new Error("Invalid response structure");
                 }
+                
+                if (propertiesData.length === 0) {
+                    console.warn("⚠️ No properties found, but API responded successfully.");
+                } else {
+                    console.log("✅ Properties found:", propertiesData);
+                }
+                
 
                 const parsedProperties = propertiesData.map((property) => {
-                    const images = property.images.length > 0
+                    const images = Array.isArray(property.images)
                         ? property.images.map(image => `${apiUrl}${image}`)
                         : [];
+                
                 
 
                     console.log(`Images for property ID: ${property.id} URLs:`, images);
