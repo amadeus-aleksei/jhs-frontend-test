@@ -80,6 +80,7 @@ const CarouselSection = ({ title }) => {
                 
                 
                     console.log(`Images for property ID: ${property.id} URLs:`, images);
+                    console.log("🖼 Image URL:", images);
 
 
                     return {
