@@ -73,8 +73,8 @@ const CarouselSection = ({ title }) => {
                 
 
                 const parsedProperties = propertiesData.map((property) => {
-                    const images = Array.isArray(property.images) 
-                    ? property.images.map(img => `${apiUrl}${img.url}`) 
+                    const images = property.attributes?.images?.data
+                    ? property.attributes.images.data.map(img => `${apiUrl}${img.attributes.url}`)
                     : [];
                 
                 
