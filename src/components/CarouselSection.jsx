@@ -57,6 +57,7 @@ const CarouselSection = ({ title }) => {
                 const apiUrl = "https://api.probablyawebsite.com";
                 const response = await axios.get(`${apiUrl}/api/properties?populate=images`);
                 console.log("Fetched Data:", response.data); // Debugging
+                console.log("📌 API Response:", response.data)
 
                 const propertiesData = response.data?.data ?? [];
 
@@ -72,9 +73,10 @@ const CarouselSection = ({ title }) => {
                 
 
                 const parsedProperties = propertiesData.map((property) => {
-                    const images = property.images && Array.isArray(property.images.data)
-                        ? property.images.data.map(image => `${apiUrl}${image.attributes.url}`)
-                        : [];
+                    const images = Array.isArray(property.images) 
+                    ? property.images.map(img => `${apiUrl}${img.url}`) 
+                    : [];
+                
                 
                 
                 
