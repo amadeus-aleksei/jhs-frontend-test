@@ -71,30 +71,17 @@ const CarouselSection = ({ title }) => {
                     console.log("✅ Properties found:", propertiesData);
                 }
                 
-
-                const parsedProperties = propertiesData.map((property) => {
-                    const images = property.attributes?.images?.data
-                        ? property.attributes.images.data.map(img => `${apiUrl}/uploads/${img.attributes.hash}${img.attributes.ext}`)
-                        : [];
-                  
-                
-                
-                    console.log(`Images for property ID: ${property.id} URLs:`, images);
-                    console.log("🖼 Image URL:", images);
-
-
-                    return {
-                        id: property.id,
-                        address: property.address || "No Address Available",
-                        price: property.price !== null ? `$${property.price}` : "N/A",
-                        bedrooms: property.bedrooms || 0,
-                        bathrooms: property.bathrooms || 0,
-                        sqft: property.sqft || 0,
-                        listingstatus: property.listingstatus || "Unknown",
-                        zillowlink: property.zillowlink || "#",
-                        images, // ✅ Properly formatted URLs
-                    };
-                });
+                const parsedProperties = propertiesData.map((property) => ({
+                    id: property.id,
+                    address: property.address,
+                    price: property.price,
+                    bedrooms: property.bedrooms,
+                    bathrooms: property.bathrooms,
+                    sqft: property.sqft,
+                    listingstatus: property.listingstatus,
+                    zillowlink: property.zillowlink,
+                    images: property.images || [], // Directly use backend-provided URLs
+                }));
 
                 console.log("✅ Parsed Properties:", parsedProperties);
                 setProperties(parsedProperties);
