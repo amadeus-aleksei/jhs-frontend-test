@@ -59,7 +59,7 @@ const CarouselSection = ({ title }) => {
                 console.log("Fetched Data:", response.data); // Debugging
                 console.log("📌 API Response:", response.data)
 
-                const propertiesData = response.data?.data ?? [];
+                const propertiesData = response.data ?? [];
 
                 if (!Array.isArray(propertiesData)) {
                     throw new Error("Invalid response structure");
@@ -78,9 +78,6 @@ const CarouselSection = ({ title }) => {
                     : [];
                 
                 
-                
-                
-
                     console.log(`Images for property ID: ${property.id} URLs:`, images);
 
 
