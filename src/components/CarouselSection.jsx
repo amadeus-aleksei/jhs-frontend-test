@@ -84,7 +84,7 @@ const CarouselSection = ({ title }) => {
                     return {
                         id: property.id,
                         address: property.address || "No Address Available",
-                        price: property.price !== null ? `$${property.attributes.price}` : "N/A",
+                        price: property.attributes.price !== null ? `$${property.attributes.price}` : "N/A",
                         bedrooms: property.bedrooms || 0,
                         bathrooms: property.bathrooms || 0,
                         sqft: property.sqft || 0,
