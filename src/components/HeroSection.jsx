@@ -8,10 +8,10 @@ const HeroSection = ({ title }) => {
         <section className='hero-section'>
             <h1 className="title">We <span className="text-highlight">SERVE</span> Chicagoland homeowners in need of solutions, <span className="text-highlight">REBUILD</span> neighborhood homes, and <span className="text-highlight">FULFILL</span> family dreams</h1>
             <div className="socials-container">
-                <a href='https://www.facebook.com/jadahomesolutions'><img src={facebookIcon} className='socials-icon'/></a>
-                <a href='https://www.tiktok.com/@jadahomesolutions'><img src={tiktokIcon} className='socials-icon'/></a>
-                <a href='https://www.instagram.com/jadahomesolutions'><img src={instagramIcon} className='socials-icon'/></a>
-                <a href='https://www.linkedin.com/company/jada-home-solutions'><img src={linkedinIcon} className='socials-icon'/></a>
+                <a href=''><img src={facebookIcon} className='socials-icon'/></a>
+                <a href=''><img src={tiktokIcon} className='socials-icon'/></a>
+                <a href=''><img src={instagramIcon} className='socials-icon'/></a>
+                <a href=''><img src={linkedinIcon} className='socials-icon'/></a>
             </div>
         </section>
     )

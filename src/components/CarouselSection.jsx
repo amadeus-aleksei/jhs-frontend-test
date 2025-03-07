@@ -105,12 +105,12 @@ const CarouselSection = ({ title }) => {
             <h1 className="title">{title}</h1>
             <div className="carousel-container">
                 {properties.map((property, index) =>  {
-                    console.log(`Rendering property ID ${property.id}, Image URL:`, property.images[0]); // ✅ Inside map()👌
+                    console.log(`Rendering property ID ${property.id}, Image URL:`, property.images[0]); // ✅ Inside map()
 
                     return (
                         <CarouselCard1
                             key={property.id || index}
-                            images={property.images} // Use the first image or fallback
+                            images={property.images}
                             icon={icon}
                             iconLink={property.zillowlink || '#'}
                             address={property.address}
