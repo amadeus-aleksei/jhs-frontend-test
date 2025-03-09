@@ -1,0 +1,226 @@
+@use "reset";
+
+$white: #fff;
+$black: #000;
+$dark-gray: #2E3033;
+$floral-white: #FBF8EE;
+$cream-white: #E1D9D1;
+$eggshell-white: #E3EBF8;
+$sea-green: #0F807C;
+$dark-cyan: #054D4A;
+$foam-green: #85D6CD;
+$sold-red: #CD4036;
+//--opaque-white-85: rgba(255, 255, 255, .85);
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .8em 8%;
+    border-bottom: 1px solid $black;
+    position: sticky;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.98);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+
+    .logo {
+      width: 10em;
+      object-fit: contain;
+      margin: 0;
+    }
+  
+    .nav-menu {
+      display: flex;
+      gap: 13px;
+  
+      .nav-item {
+        color: $white;
+        text-decoration: none;
+        padding: 9px 12px;
+        font-size: 20px;
+        font-weight: 500;
+        transition: color .3s ease;
+  
+        &:active {
+          color: $sea-green;
+          transition: color .3s ease;
+        }
+      
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            color: $sea-green;
+          }
+        }
+      }
+    }
+  
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 24px;
+      height: 18px;
+      cursor: pointer;
+      z-index: 1;
+    
+      .line {
+        height: 3px;
+        background: $white;
+        border-radius: 2px;
+        transition: background-color 0.3s ease; // Smooth transition added
+      }
+  
+      &:active .line, &.active .line {
+        background-color: $sea-green;
+        transition: background-color 0.3s ease; // Smooth transition added
+      }
+    
+      @media (hover: hover) and (pointer: fine) {
+        &:hover .line {
+          background-color: $dark-cyan;
+        }
+      }
+    }
+  
+    @media (max-width: 1268px) {
+      justify-content: space-between;
+      padding: .8em 5%;
+
+
+      .logo {
+        width: 7em;
+      }
+
+      .nav-menu {
+        .nav-item {
+          font-size: 18px;
+        }
+      }
+    }
+
+    @media (max-width: 1054px) {
+      justify-content: space-between;
+      padding: .8em 12%;
+
+      .logo {
+        width: 6.6em;
+      }
+  
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%; // Start off-screen
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        transition: right 0.3s ease-in-out;
+    
+        .nav-item {
+            color: $white;
+            font-size: 24px;
+            padding: 1rem;
+  
+            &:active {
+              color: $dark-cyan;
+            }
+          
+            @media (hover: hover) and (pointer: fine) {
+              &:hover {
+                color: $dark-cyan;
+              }
+            }
+        }
+    
+        &.open {
+            right: 0;
+        }
+    }
+  
+      .hamburger {
+        display: flex;
+      }   
+    }
+}
+
+.hero-section {
+  position: relative;
+  background-image: url('../assets/chicago-background.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  justify-content: center;
+  color: $white;
+
+
+  .title {
+    padding: 0 4em;
+    text-align: center;
+    font-size: 1.6em;
+
+    .text-highlight {
+      color: $sea-green;
+      font-size: 1.2em;
+    }
+  }
+
+  .socials-container {
+    position: absolute;
+    top: 3em;
+    left: .6em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(1.4);
+    gap: .2em;
+
+    .socials-icon {
+      transition: transform 0.3s ease-in-out;
+
+      &:hover, &:active {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  @media (max-width: 1412px) {
+    .title {
+      font-size: 1.4em;
+      padding: 2em;
+    }
+  }
+
+  @media (max-width: 496px) {
+    .title {
+      font-size: 1.2em;
+      padding: 0 1em;
+    }
+
+    .socials-container {
+      top: 2em;
+    }
+  }
+
+}
+
+.carousel-card-1 {
+
+  .content {
+    .content-right {
+      .icon {
+        width: 2em;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.carousel-section {
+
+}
