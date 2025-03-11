@@ -48,29 +48,30 @@ const CarouselSection = ({ title }) => {
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
- 
-    useEffect(() => { 
+
+    useEffect(() => {
         const fetchProperties = async () => {
             try {
-                // const apiUrl = import.meta.env.VITE_API_URL;
-                // const apiUrl = "http://localhost:1337";
-                const apiUrl = "https://api.probablyawebsite.com";
-                const response = await axios.get(`${apiUrl}/api/properties?populate=images`);
-                console.log("Fetched Data:", response.data); // Debugging
-                console.log("📌 API Response:", response.data)
+                const apiUrl = import.meta.env.VITE_API_URL;
+                const response = await axios.get(`${apiUrl}/api/properties?populate=images`, {
+                    responseType: "json",
+                    'Access-Control-Allow-Origin': '*',
+                });
+                console.log("Fetched Data:", response?.data); // Debugging
+                console.log("📌 API Response:", response?.data)
 
-                const propertiesData = response.data ?? [];
+                const propertiesData = response?.data?.data ?? [];
 
                 if (!Array.isArray(propertiesData)) {
                     throw new Error("Invalid response structure");
                 }
-                
+
                 if (propertiesData.length === 0) {
                     console.warn("⚠️ No properties found, but API responded successfully.");
                 } else {
                     console.log("✅ Properties found:", propertiesData);
                 }
-                
+
                 const parsedProperties = propertiesData.map((property) => ({
                     id: property.id,
                     address: property.address,
@@ -90,11 +91,11 @@ const CarouselSection = ({ title }) => {
                 console.error("Error fetching properties:", err);
             } finally {
                 setLoading(false);
-            } 
+            }
         };
 
         fetchProperties();
-    },[]);
+    }, []);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
@@ -104,7 +105,7 @@ const CarouselSection = ({ title }) => {
         <section className="carousel-section">
             <h1 className="title">{title}</h1>
             <div className="carousel-container">
-                {properties.map((property, index) =>  {
+                {properties.map((property, index) => {
                     console.log(`Rendering property ID ${property.id}, Image URL:`, property.images[0]); // ✅ Inside map()
 
                     return (
