@@ -62,7 +62,7 @@ const CarouselSection = ({ title }) => {
 
                 // const propertiesData = response?.data?.data ?? [];
 
-                const propertiesData = response.data
+                const propertiesData = response?.data?.data || response.data
 
                 if (!Array.isArray(propertiesData)) {
                     throw new Error("Invalid response structure");
