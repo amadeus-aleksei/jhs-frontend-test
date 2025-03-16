@@ -42,7 +42,7 @@ const CarouselCard1 = ({
             </div>
         </article>
     )
-}
+} 
 
 const CarouselSection = ({ title }) => {
     const [properties, setProperties] = useState([]);
