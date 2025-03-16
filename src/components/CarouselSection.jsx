@@ -60,7 +60,9 @@ const CarouselSection = ({ title }) => {
                 console.log("Fetched Data:", response?.data); // Debugging
                 console.log("📌 API Response:", response?.data)
 
-                const propertiesData = response?.data?.data ?? [];
+                // const propertiesData = response?.data?.data ?? [];
+
+                const propertiesData = response.data
 
                 if (!Array.isArray(propertiesData)) {
                     throw new Error("Invalid response structure");
