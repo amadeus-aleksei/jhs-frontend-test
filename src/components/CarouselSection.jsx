@@ -42,7 +42,7 @@ const CarouselCard1 = ({
             </div>
         </article>
     )
-} 
+}
 
 const CarouselSection = ({ title }) => {
     const [properties, setProperties] = useState([]);
@@ -53,7 +53,7 @@ const CarouselSection = ({ title }) => {
         const fetchProperties = async () => {
             try {
                 const apiUrl = import.meta.env.VITE_API_URL;
-                const response = await axios.get(`${apiUrl}/api/properties?populate=images`, {
+                const response = await axios.get(`${apiUrl}/api/properties?populate=*`, {
                     responseType: "json",
                     'Access-Control-Allow-Origin': '*',
                 });
